@@ -1,0 +1,9 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "/home/l/workspace/trabFinalAPS/billy/database/adonis.sqlite",
+            "dialect": "SQLite",
+            "name": "APS"
+        }
+    ]
+}
