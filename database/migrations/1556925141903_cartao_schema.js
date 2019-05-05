@@ -5,7 +5,7 @@ const Schema = use("Schema");
 
 class CartaoSchema extends Schema {
   up() {
-    this.create("cartao", table => {
+    this.create("cartoes", table => {
       table
         .string("Numero", 16)
         .notNullable()
@@ -14,7 +14,7 @@ class CartaoSchema extends Schema {
       table
         .string("Titular")
         .references("CPF")
-        .inTable("cliente")
+        .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
@@ -25,7 +25,7 @@ class CartaoSchema extends Schema {
   }
 
   down() {
-    this.drop("cartao");
+    this.drop("cartoes");
   }
 }
 

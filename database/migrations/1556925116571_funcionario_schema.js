@@ -5,7 +5,7 @@ const Schema = use("Schema");
 
 class FuncionarioSchema extends Schema {
   up() {
-    this.create("funcionario", table => {
+    this.create("funcionarios", table => {
       table
         .integer("Codigo")
         .notNullable()
@@ -22,7 +22,7 @@ class FuncionarioSchema extends Schema {
   }
 
   down() {
-    this.drop("funcionario");
+    this.drop("funcionarios");
   }
 }
 

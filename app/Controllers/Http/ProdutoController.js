@@ -25,7 +25,7 @@ class ProdutoController {
   }
 
   /**
-   * Render a form to be used for creating a new produto.
+   * Render a form to be used for creating a new produtos.
    * GET produtos/create
    *
    * @param {object} ctx
@@ -37,7 +37,7 @@ class ProdutoController {
   }
 
   /**
-   * Create/save a new produto.
+   * Create/save a new produtos.
    * POST produtos
    *
    * @param {object} ctx
@@ -48,7 +48,7 @@ class ProdutoController {
   }
 
   /**
-   * Display a single produto.
+   * Display a single produtos.
    * GET produtos/:id
    *
    * @param {object} ctx
@@ -60,7 +60,7 @@ class ProdutoController {
   }
 
   /**
-   * Render a form to update an existing produto.
+   * Render a form to update an existing produtos.
    * GET produtos/:id/edit
    *
    * @param {object} ctx
@@ -72,7 +72,7 @@ class ProdutoController {
   }
 
   /**
-   * Update produto details.
+   * Update produtos details.
    * PUT or PATCH produtos/:id
    *
    * @param {object} ctx
@@ -83,7 +83,7 @@ class ProdutoController {
   }
 
   /**
-   * Delete a produto with id.
+   * Delete a produtos with id.
    * DELETE produtos/:id
    *
    * @param {object} ctx

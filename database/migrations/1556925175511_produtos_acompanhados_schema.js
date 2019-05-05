@@ -10,14 +10,14 @@ class ProdutosAcompanhadosSchema extends Schema {
       table
         .string("Cliente", 11)
         .references("CPF")
-        .inTable("cliente")
+        .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
         .integer("CodProduto")
         .references("Codigo")
-        .inTable("produto")
+        .inTable("produtos")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();

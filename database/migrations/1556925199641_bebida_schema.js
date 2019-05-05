@@ -5,12 +5,12 @@ const Schema = use("Schema");
 
 class BebidaSchema extends Schema {
   up() {
-    this.create("bebida", table => {
+    this.create("bebidas", table => {
       table.increments("Codigo");
       table
         .integer("CodProduto")
         .references("Codigo")
-        .inTable("produto")
+        .inTable("produtos")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
@@ -20,7 +20,7 @@ class BebidaSchema extends Schema {
   }
 
   down() {
-    this.drop("bebida");
+    this.drop("bebidas");
   }
 }
 

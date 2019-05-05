@@ -5,7 +5,7 @@ const Schema = use("Schema");
 
 class CompraSchema extends Schema {
   up() {
-    this.create("compra", table => {
+    this.create("compras", table => {
       table.increments("Codigo");
       table.date("Data").notNullable();
       table.string("Status", 20).notNullable();
@@ -13,14 +13,14 @@ class CompraSchema extends Schema {
       table
         .string("Cliente", 11)
         .references("CPF")
-        .inTable("cliente")
+        .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
         .integer("Funcionario")
         .references("Codigo")
-        .inTable("funcionario")
+        .inTable("funcionarios")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
@@ -29,7 +29,7 @@ class CompraSchema extends Schema {
   }
 
   down() {
-    this.drop("compra");
+    this.drop("compras");
   }
 }
 
