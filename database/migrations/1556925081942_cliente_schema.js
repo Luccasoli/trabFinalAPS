@@ -14,7 +14,7 @@ class ClienteSchema extends Schema {
       table
         .integer("CodUsuario")
         .references("Codigo")
-        .inTable("usuario")
+        .inTable("usuarios")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();

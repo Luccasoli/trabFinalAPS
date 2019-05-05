@@ -10,7 +10,7 @@
 const Usuario = use("App/Models/Usuario");
 
 class UsuarioController {
-  async getAll({ request, response }) {
+  async index({ request, response }) {
     return await Usuario.all();
   }
 

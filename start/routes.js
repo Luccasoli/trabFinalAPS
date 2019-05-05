@@ -20,5 +20,5 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-Route.get('/api/usuario', 'UsuarioController.getAll')
-Route.post('/api/usuario', 'UsuarioController.store')
+Route.get('/api/usuarios', 'UsuarioController.index')
+Route.get('/api/produtos', 'ProdutoController.index')
