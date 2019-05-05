@@ -6,6 +6,9 @@ const Env = use("Env");
 /** @type {import('@adonisjs/ignitor/src/Helpers')} */
 const Helpers = use("Helpers");
 
+const Url = require('url-parse')
+const HEROKU_DATABASE_URL = new Url(Env.get('DATABASE_URL'))
+
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -76,11 +79,11 @@ module.exports = {
   pg: {
     client: "pg",
     connection: {
-      host: Env.get("DB_HOST", "localhost"),
-      port: Env.get("DB_PORT", "5432"),
-      user: Env.get("DB_USER", "postgres"),
-      password: Env.get("DB_PASSWORD", "secret"),
-      database: Env.get("DB_DATABASE", "aps_billy"),
+      host: Env.get("DB_HOST", HEROKU_DATABASE_URL.host),
+      port: Env.get("DB_PORT", HEROKU_DATABASE_URL.port),
+      user: Env.get("DB_USER", HEROKU_DATABASE_URL.username),
+      password: Env.get("DB_PASSWORD", HEROKU_DATABASE_URL.password),
+      database: Env.get("DB_DATABASE", HEROKU_DATABASE_URL.pathname.substr(1)),
       ssl: true
     },
     debug: Env.get("DB_DEBUG", false)
