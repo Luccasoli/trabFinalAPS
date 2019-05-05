@@ -6,14 +6,14 @@ const Schema = use("Schema");
 class CartaoSchema extends Schema {
   up() {
     this.create("cartoes", table => {
+      table.increments();
       table
         .string("Numero", 16)
         .notNullable()
         .unique()
-        .primary();
       table
-        .string("Titular")
-        .references("CPF")
+        .integer("Titular")
+        .references("id")
         .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")

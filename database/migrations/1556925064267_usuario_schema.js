@@ -6,7 +6,7 @@ const Schema = use("Schema");
 class UsuarioSchema extends Schema {
   up() {
     this.create("usuarios", table => {
-      table.increments("Codigo");
+      table.increments();
       table.string("Nome", 200).notNullable();
       table
         .string("Email", 50)

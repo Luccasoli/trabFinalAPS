@@ -15,9 +15,9 @@ class UsuarioController {
   }
 
   async store({ request, response }) {
-    const { nome, email, senha } = request.body;
+    const { Nome, Email, Senha } = request.body;
 
-    const usuario = await Usuario.create({ nome, email, senha })
+    const usuario = await Usuario.create({ Nome, Email, Senha })
 
     return usuario
   }

@@ -6,14 +6,14 @@ const Schema = use("Schema");
 class FuncionarioSchema extends Schema {
   up() {
     this.create("funcionarios", table => {
+      table.increments();
       table
         .integer("Codigo")
         .notNullable()
         .unique()
-        .primary();
       table
         .integer("CodUsuario")
-        .references("Codigo")
+        .references("id")
         .inTable("usuarios")
         .onDelete("CASCADE")
         .onUpdate("CASCADE");

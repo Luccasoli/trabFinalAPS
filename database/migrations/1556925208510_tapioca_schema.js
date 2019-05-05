@@ -6,10 +6,10 @@ const Schema = use("Schema");
 class TapiocaSchema extends Schema {
   up() {
     this.create("tapiocas", table => {
-      table.increments("Codigo");
+      table.increments();
       table
         .integer("CodProduto")
-        .references("Codigo")
+        .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")

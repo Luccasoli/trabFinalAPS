@@ -6,14 +6,14 @@ const Schema = use("Schema");
 class ClienteSchema extends Schema {
   up() {
     this.create("clientes", table => {
+      table.increments();      
       table
         .string("CPF", 11)
         .notNullable()
         .unique()
-        .primary();
       table
         .integer("CodUsuario")
-        .references("Codigo")
+        .references("id")
         .inTable("usuarios")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")

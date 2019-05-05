@@ -6,7 +6,7 @@ const Schema = use("Schema");
 class ProdutosAcompanhadosSchema extends Schema {
   up() {
     this.create("produtos_acompanhados", table => {
-      table.increments("Codigo");
+      table.increments();
       table
         .string("Cliente", 11)
         .references("CPF")
@@ -16,7 +16,7 @@ class ProdutosAcompanhadosSchema extends Schema {
         .notNullable();
       table
         .integer("CodProduto")
-        .references("Codigo")
+        .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")

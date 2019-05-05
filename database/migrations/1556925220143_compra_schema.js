@@ -6,20 +6,20 @@ const Schema = use("Schema");
 class CompraSchema extends Schema {
   up() {
     this.create("compras", table => {
-      table.increments("Codigo");
+      table.increments();
       table.date("Data").notNullable();
       table.string("Status", 20).notNullable();
       table.float("Valor").notNullable();
       table
-        .string("Cliente", 11)
-        .references("CPF")
+        .integer("Cliente", 11)
+        .references("id")
         .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
         .integer("Funcionario")
-        .references("Codigo")
+        .references("id")
         .inTable("funcionarios")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
