@@ -9,7 +9,7 @@ class BebidasSchema extends Schema {
       table.increments("Codigo");
       table
         .integer("CodProduto")
-        .references("Codigos")
+        .references("Codigo")
         .inTable("produto")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")

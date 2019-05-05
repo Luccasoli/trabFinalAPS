@@ -10,7 +10,7 @@ class ProdutosCompraSchema extends Schema {
       table
         .integer("CodCompra")
         .references("Codigo")
-        .inTable("compra")
+        .inTable("compras")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
