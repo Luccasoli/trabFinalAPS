@@ -17,10 +17,9 @@ class UsuarioController {
   async store({ request, response }) {
     const { nome, email, senha } = request.body;
 
-    // const usuario = await Usuario.Create(
-    //   { nome: "virk" },
-    //   { senha: "virk", email: "virk@adonisjs.com" }
-    // );
+    const usuario = await Usuario.create({ nome, email, senha })
+
+    return usuario
   }
 
   async getOne({ params, request, response, view }) {}

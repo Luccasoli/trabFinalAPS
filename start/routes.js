@@ -21,4 +21,6 @@ Route.get('/', () => {
 })
 
 Route.get('/api/usuarios', 'UsuarioController.index')
+Route.post('/api/usuarios', 'UsuarioController.store')
+
 Route.get('/api/produtos', 'ProdutoController.index')
