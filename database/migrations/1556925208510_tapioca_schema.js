@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use("Schema");
 
-class BebidasSchema extends Schema {
+class TapiocaSchema extends Schema {
   up() {
-    this.create("bebidas", table => {
+    this.create("tapioca", table => {
       table.increments("Codigo");
       table
         .integer("CodProduto")
@@ -14,14 +14,14 @@ class BebidasSchema extends Schema {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
-      table.string("Tipo", 10);
+      table.string("Recheio", 10);
       table.timestamps();
     });
   }
 
   down() {
-    this.drop("bebidas");
+    this.drop("tapioca");
   }
 }
 
-module.exports = BebidasSchema;
+module.exports = TapiocaSchema;

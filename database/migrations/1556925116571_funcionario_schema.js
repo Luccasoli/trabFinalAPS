@@ -22,7 +22,7 @@ class FuncionarioSchema extends Schema {
   }
 
   down() {
-    this.drop("funcionarios");
+    this.drop("funcionario");
   }
 }
 

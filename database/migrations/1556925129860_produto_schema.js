@@ -15,7 +15,7 @@ class ProdutoSchema extends Schema {
   }
 
   down() {
-    this.drop("produtos");
+    this.drop("produto");
   }
 }
 

@@ -23,7 +23,7 @@ class ClienteSchema extends Schema {
   }
 
   down() {
-    this.drop("clientes");
+    this.drop("cliente");
   }
 }
 
