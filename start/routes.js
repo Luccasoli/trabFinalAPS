@@ -24,3 +24,11 @@ Route.get('/api/usuarios', 'UsuarioController.index')
 Route.post('/api/usuarios', 'UsuarioController.store')
 
 Route.get('/api/produtos', 'ProdutoController.index')
+
+// Tapioca
+Route.get('/api/tapiocas', 'TapiocaController.index')
+Route.post('/api/tapiocas', 'TapiocaController.store')
+
+// Bebida
+Route.get('/api/bebidas', 'BebidaController.index')
+Route.post('/api/bebidas', 'BebidaController.store')

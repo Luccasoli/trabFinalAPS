@@ -14,7 +14,7 @@ class TapiocaSchema extends Schema {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
-      table.string("Recheio", 10);
+      table.string("Recheio", 50);
       table.timestamps();
     });
   }

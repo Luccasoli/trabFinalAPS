@@ -1,59 +1,30 @@
-'use strict'
+"use strict";
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-/**
- * Resourceful controller for interacting with bebidas
- */
+const Bebida = use("App/Models/Bebida");
+
 class BebidaController {
-  /**
-   * Show a list of all bebidas.
-   * GET bebidas
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  async index({ request, response, view }) {
+    return await Bebida.all();
   }
 
-  /**
-   * Render a form to be used for creating a new bebida.
-   * GET bebidas/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+  async store({ request, response, view }) {
+    const { Valor, Descricao, Disponibilidade, Tipo } = request.body;
+
+    const bebida = await Bebida.create({
+      Valor,
+      Disponibilidade,
+      Tipo,
+      Descricao
+    });
+
+    return bebida;
   }
 
-  /**
-   * Create/save a new bebida.
-   * POST bebidas
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
-  }
-
-  /**
-   * Display a single bebida.
-   * GET bebidas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing bebida.
@@ -64,8 +35,7 @@ class BebidaController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update bebida details.
@@ -75,8 +45,7 @@ class BebidaController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 
   /**
    * Delete a bebida with id.
@@ -86,8 +55,7 @@ class BebidaController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
-  }
+  async destroy({ params, request, response }) {}
 }
 
-module.exports = BebidaController
+module.exports = BebidaController;
