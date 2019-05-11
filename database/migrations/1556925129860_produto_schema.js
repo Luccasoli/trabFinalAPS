@@ -5,11 +5,11 @@ const Schema = use("Schema");
 
 class ProdutoSchema extends Schema {
   up() {
-    this.create("produtos", table => {     
+    this.create("produtos", table => {
       table.increments();
-      table.float("Valor").notNullable();
-      table.string("Descricao", 150);
-      table.boolean("Disponibilidade").notNullable();
+      table.float("valor").notNullable();
+      table.string("descricao", 150);
+      table.boolean("disponibilidade").notNullable();
       table.timestamps();
     });
   }

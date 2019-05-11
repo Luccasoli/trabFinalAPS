@@ -7,12 +7,12 @@ class UsuarioSchema extends Schema {
   up() {
     this.create("usuarios", table => {
       table.increments();
-      table.string("Nome", 200).notNullable();
+      table.string("nome", 200).notNullable();
       table
-        .string("Email", 50)
+        .string("email", 50)
         .notNullable()
         .unique();
-      table.string("Senha", 10).notNullable();
+      table.string("senha", 100).notNullable();
       table.timestamps();
     });
   }

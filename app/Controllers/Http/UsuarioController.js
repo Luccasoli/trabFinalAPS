@@ -10,23 +10,38 @@
 const Usuario = use("App/Models/Usuario");
 
 class UsuarioController {
+  /*
+    Retorna todos os usuários
+  */
   async index({ request, response }) {
     return await Usuario.all();
   }
 
+  /*
+    Armazena um usuário
+  */
   async store({ request, response }) {
     const { Nome, Email, Senha } = request.body;
 
-    const usuario = await Usuario.create({ Nome, Email, Senha })
+    const usuario = await Usuario.create({ Nome, Email, Senha });
 
-    return usuario
+    return usuario;
   }
 
-  async getOne({ params, request, response, view }) {}
+  /*
+    Retorna um único usuário
+  */
+  async show({ params, request, response, view }) {}
 
+  /*
+    Atualiza um usuário
+  */
   async update({ params, request, response }) {}
 
-  async delete({ params, request, response }) {}
+  /*
+    Exclui um usuário
+  */
+  async destroy({ params, request, response }) {}
 }
 
 module.exports = UsuarioController;

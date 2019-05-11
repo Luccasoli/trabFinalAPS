@@ -8,7 +8,7 @@ class BebidaSchema extends Schema {
     this.create("bebidas", table => {
       table.increments();
       table
-        .integer("CodProduto")
+        .integer("cod_produto")
         .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")

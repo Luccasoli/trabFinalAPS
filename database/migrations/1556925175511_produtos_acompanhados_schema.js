@@ -8,14 +8,14 @@ class ProdutosAcompanhadosSchema extends Schema {
     this.create("produtos_acompanhados", table => {
       table.increments();
       table
-        .string("Cliente", 11)
-        .references("CPF")
+        .integer("cliente")
+        .references("id")
         .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
-        .integer("CodProduto")
+        .integer("cod_produto")
         .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")

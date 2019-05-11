@@ -8,14 +8,14 @@ class ProdutosCompraSchema extends Schema {
     this.create("produtos_compras", table => {
       table.increments();
       table
-        .integer("CodCompra")
+        .integer("cod_compra")
         .references("id")
         .inTable("compras")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
-        .integer("CodProduto")
+        .integer("cod_produto")
         .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")

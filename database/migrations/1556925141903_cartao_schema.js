@@ -8,18 +8,18 @@ class CartaoSchema extends Schema {
     this.create("cartoes", table => {
       table.increments();
       table
-        .string("Numero", 16)
+        .string("numero", 16)
         .notNullable()
         .unique()
       table
-        .integer("Titular")
+        .integer("titular")
         .references("id")
         .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
-      table.date("DtVenc").notNullable();
-      table.integer("Tipo").notNullable();
+      table.date("dt_venc").notNullable();
+      table.integer("tipo").notNullable();
       table.timestamps();
     });
   }

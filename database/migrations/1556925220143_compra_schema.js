@@ -7,18 +7,18 @@ class CompraSchema extends Schema {
   up() {
     this.create("compras", table => {
       table.increments();
-      table.date("Data").notNullable();
-      table.string("Status", 20).notNullable();
-      table.float("Valor").notNullable();
+      table.date("data").notNullable();
+      table.string("status", 20).notNullable();
+      table.float("valor").notNullable();
       table
-        .integer("Cliente", 11)
+        .integer("cliente", 11)
         .references("id")
         .inTable("clientes")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
       table
-        .integer("Funcionario")
+        .integer("funcionario")
         .references("id")
         .inTable("funcionarios")
         .onDelete("CASCADE")

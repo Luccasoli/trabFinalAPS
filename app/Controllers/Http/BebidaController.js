@@ -7,10 +7,16 @@
 const Bebida = use("App/Models/Bebida");
 
 class BebidaController {
+  /*
+    Retorna todas as bebidas
+  */
   async index({ request, response, view }) {
     return await Bebida.all();
   }
 
+  /*
+    Armazena uma bebida
+  */
   async store({ request, response, view }) {
     const { Valor, Descricao, Disponibilidade, Tipo } = request.body;
 
@@ -24,37 +30,19 @@ class BebidaController {
     return bebida;
   }
 
+  /*
+    Retorna uma única bebida
+  */
   async show({ params, request, response, view }) {}
 
-  /**
-   * Render a form to update an existing bebida.
-   * GET bebidas/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({ params, request, response, view }) {}
-
-  /**
-   * Update bebida details.
-   * PUT or PATCH bebidas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
+  /*
+    Atualiza uma bebida
+  */
   async update({ params, request, response }) {}
 
-  /**
-   * Delete a bebida with id.
-   * DELETE bebidas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
+  /*
+    Exclui uma bebida
+  */
   async destroy({ params, request, response }) {}
 }
 

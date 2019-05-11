@@ -8,13 +8,13 @@ class TapiocaSchema extends Schema {
     this.create("tapiocas", table => {
       table.increments();
       table
-        .integer("CodProduto")
+        .integer("cod_produto")
         .references("id")
         .inTable("produtos")
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
-      table.string("Recheio", 50);
+      table.string("recheio", 50);
       table.timestamps();
     });
   }

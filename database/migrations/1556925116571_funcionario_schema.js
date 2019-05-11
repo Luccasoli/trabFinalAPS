@@ -8,11 +8,7 @@ class FuncionarioSchema extends Schema {
     this.create("funcionarios", table => {
       table.increments();
       table
-        .integer("Codigo")
-        .notNullable()
-        .unique()
-      table
-        .integer("CodUsuario")
+        .integer("cod_usuario")
         .references("id")
         .inTable("usuarios")
         .onDelete("CASCADE")

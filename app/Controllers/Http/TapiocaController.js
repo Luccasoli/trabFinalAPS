@@ -7,10 +7,16 @@
 const Tapioca = use("App/Models/Tapioca");
 
 class TapiocaController {
+  /*
+    Retorna todas as tapiocas
+  */
   async index({ request, response, view }) {
     return await Tapioca.all();
   }
 
+  /*
+    Armazena uma tapioca
+  */
   async store({ request, response }) {
     const { Valor, Descricao, Disponibilidade, Recheio } = request.body;
 
@@ -24,46 +30,19 @@ class TapiocaController {
     return tapioca;
   }
 
-  /**
-   * Display a single tapioca.
-   * GET tapiocas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
+  /*
+    Retorna uma única tapioca
+  */
   async show({ params, request, response, view }) {}
 
-  /**
-   * Render a form to update an existing tapioca.
-   * GET tapiocas/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({ params, request, response, view }) {}
-
-  /**
-   * Update tapioca details.
-   * PUT or PATCH tapiocas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
+  /*
+    Atualiza uma tapioca
+  */
   async update({ params, request, response }) {}
 
-  /**
-   * Delete a tapioca with id.
-   * DELETE tapiocas/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
+  /*
+    Exclui uma tapioca
+  */
   async destroy({ params, request, response }) {}
 }
 
