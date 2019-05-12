@@ -17,14 +17,14 @@ class BebidaController {
   /*
     Armazena uma bebida
   */
-  async store({ request, response, view }) {
-    const { Valor, Descricao, Disponibilidade, Tipo } = request.body;
+  async store({ request, response }) {
+    const { valor, descricao, disponibilidade, tipo } = request.body;
 
     const bebida = await Bebida.create({
-      Valor,
-      Disponibilidade,
-      Tipo,
-      Descricao
+      valor,
+      descricao,
+      disponibilidade,
+      tipo
     });
 
     return bebida;
@@ -34,9 +34,10 @@ class BebidaController {
     Retorna uma única bebida
   */
   async show({ params, request, response, view }) {
+
     const bebida = await Bebida.findOrFail(params.id);
     const {id, tipo} = bebida;
-    let produto = await bebida.produto().fetch();
+    let produto = await Bebida.produto().fetch();
 
     return{
       id,
@@ -51,19 +52,21 @@ class BebidaController {
     Atualiza uma bebida
   */
   async update({ params, request, response }) {
+
     const bebida = await Bebida.findOrFail(params.id);
-    const {tipo} = request.body;
+    const {valor, descricao, disponibilidade, tipo} = request.body;
 
     await bebida.produto().update({nome, valor, descricao});
-    
-    let bebida = await bebida.produto().fetch;
+    bebida.merge({tipo});
+    await bebida.save();
+    let produto = await bebida.produto().fetch();
 
     return { 
       id: bebida.id,
-      tipo = bebida.tipo,
+      tipo: bebida.tipo,
       valor: produto.valor,
-      descricao = produto.descricao,
-      disponibilidade = produto.disponibilidade
+      descricao: produto.descricao,
+      disponibilidade: produto.disponibilidade
     };
   }
 

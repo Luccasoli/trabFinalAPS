@@ -13,12 +13,13 @@ class Bebida extends Model {
   static async all() {
     return Database.table(super.table)
       .select(
+        `${super.table}.id`,
         `${super.table}.tipo`,
         "produtos.valor",
         "produtos.descricao",
         "produtos.disponibilidade"
       )
-      .innerJoin("produtos", `${super.table}.cod_produto`, "produto.id")
+      .innerJoin("produtos", `${super.table}.cod_produto`, "produtos.id")
       .orderBy(`${super.table}.id`, "asc");
   }
 
@@ -46,4 +47,5 @@ class Bebida extends Model {
       .orderBy(`${super.table}.id`, "asc");
   }
 }
+
 module.exports = Bebida;

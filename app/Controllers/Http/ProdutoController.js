@@ -41,12 +41,6 @@ class ProdutoController {
   }
 
   /**
-   * Update produtos details.
-   * PUT or PATCH produtos/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
   async update ({ params, request, response }) {
   }
@@ -54,10 +48,6 @@ class ProdutoController {
   /**
    * Delete a produtos with id.
    * DELETE produtos/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
   }

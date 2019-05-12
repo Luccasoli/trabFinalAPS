@@ -58,7 +58,7 @@ class ClienteController {
 
     await cliente.usuario().update({ nome, email, senha });
     cliente.merge({ cpf });
-    await cliente.save()
+    await cliente.save();
 
     let usuario = await cliente.usuario().fetch();
 
