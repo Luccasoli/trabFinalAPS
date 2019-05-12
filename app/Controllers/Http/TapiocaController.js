@@ -22,9 +22,9 @@ class TapiocaController {
 
     const tapioca = await Tapioca.create({
       valor,
+      descricao,
       disponibilidade,
-      recheio,
-      descricao
+      recheio
     });
 
     return tapioca;
@@ -37,7 +37,7 @@ class TapiocaController {
 
     const tapioca = await Tapioca.findOrFail(params.id);
     const {id, recheio} = tapioca;
-    let produto = await tapioca.produto().fetch();
+    let produto = await Tapioca.produto().fetch();
 
     return{
       id,
@@ -54,20 +54,19 @@ class TapiocaController {
   async update({ params, request, response }) {
 
     const tapioca = await Tapioca.findOrFail(params.id);
-    const {recheio} = request.body;
+    const {valor, descricao, disponibilidade, recheio} = request.body;
 
     await tapioca.produto().update({nome, valor, descricao});
-    
-    let tapioca = await tapioca.produto().fetch;
+    tapioca.merge({recheio});
+    await tapioca.save();
+    let produto = await tapioca.produto().fetch();
 
     return { 
       id: tapioca.id,
-      recheio = tapioca.recheio,
+      recheio: tapioca.recheio,
       valor: produto.valor,
-      descricao = produto.descricao,
-      disponibilidade = produto.disponibilidade
-
-
+      descricao: produto.descricao,
+      disponibilidade: produto.disponibilidade
     };
   }
 
