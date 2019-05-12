@@ -33,17 +33,53 @@ class TapiocaController {
   /*
     Retorna uma única tapioca
   */
-  async show({ params, request, response, view }) {}
+  async show({ params, request, response, view }) {
+
+    const tapioca = await Tapioca.findOrFail(params.id);
+    const {id, recheio} = tapioca;
+    let produto = await tapioca.produto().fetch();
+
+    return{
+      id,
+      valor, 
+      disponibilidade,
+      recheio,
+      descricao
+    };
+  }
 
   /*
     Atualiza uma tapioca
   */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+
+    const tapioca = await Tapioca.findOrFail(params.id);
+    const {recheio} = request.body;
+
+    await tapioca.produto().update({nome, valor, descricao});
+    
+    let tapioca = await tapioca.produto().fetch;
+
+    return { 
+      id: tapioca.id,
+      recheio = tapioca.recheio,
+      valor: produto.valor,
+      descricao = produto.descricao,
+      disponibilidade = produto.disponibilidade
+
+
+    };
+  }
 
   /*
     Exclui uma tapioca
   */
-  async destroy({ params, request, response }) {}
+  async destroy({ params, request, response }) {
+    const tapioca = await Tapioca.findOrFail(params.id);
+
+    tapioca.produto().delete();
+    tapioca.delete();
+  }
 }
 
 module.exports = TapiocaController;

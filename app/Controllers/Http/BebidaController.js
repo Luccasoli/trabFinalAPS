@@ -33,17 +33,49 @@ class BebidaController {
   /*
     Retorna uma única bebida
   */
-  async show({ params, request, response, view }) {}
+  async show({ params, request, response, view }) {
+    const bebida = await Bebida.findOrFail(params.id);
+    const {id, tipo} = bebida;
+    let produto = await bebida.produto().fetch();
+
+    return{
+      id,
+      valor, 
+      disponibilidade,
+      tipo,
+      descricao
+    };
+  }
 
   /*
     Atualiza uma bebida
   */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+    const bebida = await Bebida.findOrFail(params.id);
+    const {tipo} = request.body;
+
+    await bebida.produto().update({nome, valor, descricao});
+    
+    let bebida = await bebida.produto().fetch;
+
+    return { 
+      id: bebida.id,
+      tipo = bebida.tipo,
+      valor: produto.valor,
+      descricao = produto.descricao,
+      disponibilidade = produto.disponibilidade
+    };
+  }
 
   /*
     Exclui uma bebida
   */
-  async destroy({ params, request, response }) {}
+  async destroy({ params, request, response }) {
+    const bebida = await Bebida.findOrFail(params.id);
+
+    bebida.produto().delete();
+    bebida.delete();
+  }
 }
 
 module.exports = BebidaController;
