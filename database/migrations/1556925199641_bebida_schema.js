@@ -14,7 +14,7 @@ class BebidaSchema extends Schema {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
-      table.string("Tipo", 10);
+      table.string("tipo", 50);
       table.timestamps();
     });
   }

@@ -24,19 +24,16 @@ class Bebida extends Model {
   }
 
   static async create({ valor, descricao, disponibilidade, tipo }) {
-    let bebida;
     let produto = await Produto.create({ valor, descricao, disponibilidade });
 
-    try {
-      bebida = await super.create({
-        cod_produto: produto.primaryKeyValue,
-        tipo
-      });
-    } catch (e) {
-      await bebida.delete();
-    }
+    let bebida = await super.create({
+      cod_produto: produto.primaryKeyValue,
+      tipo
+    });
+
     return Database.table(`${super.table}`)
       .select(
+        `${super.table}.id`,
         `${super.table}.tipo`,
         "produtos.valor",
         "produtos.descricao",

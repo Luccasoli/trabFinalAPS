@@ -24,19 +24,16 @@ class Tapioca extends Model {
   }
 
   static async create({ valor, descricao, disponibilidade, recheio }) {
-    let tapioca;
     let produto = await Produto.create({ valor, descricao, disponibilidade });
 
-    try {
-      tapioca = await super.create({
-        cod_produto: produto.primaryKeyValue,
-        recheio
-      });
-    } catch (e) {
-      await tapioca.delete();
-    }
+    let tapioca = await super.create({
+      cod_produto: produto.primaryKeyValue,
+      recheio
+    });
+
     return Database.table(`${super.table}`)
       .select(
+        `${super.table}.id`,
         `${super.table}.recheio`,
         "produtos.valor",
         "produtos.descricao",
