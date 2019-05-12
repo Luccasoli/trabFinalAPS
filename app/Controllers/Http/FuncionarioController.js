@@ -50,7 +50,24 @@ class FuncionarioController {
   /*
     Atualiza um funcionário
   */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+    const funcionario = await Funcionario.findOrFail(params.id);
+    const { nome, email, senha, cpf } = request.body;
+
+    await funcionario.usuario().update({ nome, email, senha });
+
+    let usuario = await funcionario.usuario().fetch();
+
+    return {
+      id: funcionario.id,
+      cpf: funcionario.cpf,
+      created_at: funcionario.created_at,
+      updated_at: funcionario.updated_at,
+      nome: usuario.nome,
+      email: usuario.email,
+      senha: usuario.senha
+    };
+  }
 
   /*
     Exclui um funcionário

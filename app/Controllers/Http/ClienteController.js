@@ -52,7 +52,26 @@ class ClienteController {
   /*
     Atualiza um cliente
   */
-  async update({ params, request, response }) {}
+  async update({ params, request, response }) {
+    const cliente = await Cliente.findOrFail(params.id);
+    const { nome, email, senha, cpf } = request.body;
+
+    await cliente.usuario().update({ nome, email, senha });
+    cliente.merge({ cpf });
+    await cliente.save()
+
+    let usuario = await cliente.usuario().fetch();
+
+    return {
+      id: cliente.id,
+      cpf: cliente.cpf,
+      created_at: cliente.created_at,
+      updated_at: cliente.updated_at,
+      nome: usuario.nome,
+      email: usuario.email,
+      senha: usuario.senha
+    };
+  }
 
   /*
     Exclui um cliente
