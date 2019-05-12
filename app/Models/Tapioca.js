@@ -6,45 +6,45 @@ const Produto = use("App/Models/Produto");
 const Database = use("Database");
 
 class Tapioca extends Model {
-  produto(){
+  produto() {
     return this.belongsTo("App/Models/Produto", "cod_produto", "id");
   }
-  
-  static async all(){
+
+  static async all() {
     return Database.table(super.table)
       .select(
+        `${super.table}.id`,
         `${super.table}.recheio`,
-        "produto.valor",
-        "produto.descricao",
-        "produto.disponibilidade"
+        "produtos.valor",
+        "produtos.descricao",
+        "produtos.disponibilidade"
       )
-      .innerJoin("produto",  `${super.table}.cod_produto`,"produto.id")
-      .orderBy( `${super.table}.id`,"asc");
+      .innerJoin("produtos", `${super.table}.cod_produto`, "produtos.id")
+      .orderBy(`${super.table}.id`, "asc");
   }
 
-  static async create({ Valor, Descricao, Disponibilidade, recheio }) {
+  static async create({ valor, descricao, disponibilidade, recheio }) {
     let tapioca;
-    let produto = await Produto.create({valor, descricao, disponibilidade});
+    let produto = await Produto.create({ valor, descricao, disponibilidade });
 
     try {
       tapioca = await super.create({
         cod_produto: produto.primaryKeyValue,
-        id
+        recheio
       });
-    } catch (e) { 
+    } catch (e) {
       await tapioca.delete();
     }
     return Database.table(`${super.table}`)
       .select(
         `${super.table}.recheio`,
-        "produto.valor",
-        "produto.descricao",
-        "produto.disponibilidade"
+        "produtos.valor",
+        "produtos.descricao",
+        "produtos.disponibilidade"
       )
-      .innerJoin("produto",  `${super.table}.cod_produto`,"produto.id")
+      .innerJoin("produtos", `${super.table}.cod_produto`, "produtos.id")
       .where(`${super.table}.id`, tapioca.primaryKeyValue)
-      .orderBy( `${super.table}.id`,"asc");
-
+      .orderBy(`${super.table}.id`, "asc");
   }
 }
 
