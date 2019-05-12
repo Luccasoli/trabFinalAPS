@@ -18,13 +18,13 @@ class TapiocaController {
     Armazena uma tapioca
   */
   async store({ request, response }) {
-    const { Valor, Descricao, Disponibilidade, Recheio } = request.body;
+    const { valor, descricao, disponibilidade, recheio } = request.body;
 
     const tapioca = await Tapioca.create({
-      Valor,
-      Disponibilidade,
-      Recheio,
-      Descricao
+      valor,
+      disponibilidade,
+      recheio,
+      descricao
     });
 
     return tapioca;

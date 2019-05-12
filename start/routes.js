@@ -10,5 +10,6 @@ Route.get("/", () => {
 Route.group(() => {
   Route.resource("tapiocas", "TapiocaController").apiOnly();
   Route.resource("bebidas", "BebidaController").apiOnly();
-  Route.resource("usuarios", "UsuarioController").apiOnly();
+  Route.resource("funcionarios", "FuncionarioController").apiOnly();
+  Route.resource("clientes", "ClienteController").apiOnly();
 }).prefix("api");
