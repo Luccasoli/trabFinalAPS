@@ -10,8 +10,10 @@ Route.get("/", () => {
 Route.group(() => {
   Route.resource("tapiocas", "TapiocaController").apiOnly();
   Route.resource("bebidas", "BebidaController").apiOnly();
+  Route.resource("produtos", "ProdutoController").apiOnly();
   Route.resource("funcionarios", "FuncionarioController").apiOnly();
   Route.resource("clientes", "ClienteController").apiOnly();
   Route.resource("usuarios", "UsuarioController").apiOnly();
   Route.resource("compras", "CompraController").apiOnly();
+  Route.resource("produtos_compra", "ProdutosCompraController").apiOnly();
 }).prefix("api");

@@ -6,10 +6,10 @@ const Usuario = use("App/Models/Compra");
 const Database = use("Database");
 
 class ProdutosCompra extends Model {
-    compra(){
+    compras(){
         return this.belongsTo("App/Models/Compra", "cod_compra", "id");
     }
-
+ 
     static async all(){
         return Database.table(super.table)
             .select(

@@ -21,7 +21,7 @@ class ProdutosCompraController {
   async store ({ request, response }) {
     const { data, status, valor, cliente, funcionario, cartao, cod_produto, quantidade } = request.body;
 
-    const produtocompra = await ProdutoCompra.crete({
+    const produtocompra = await ProdutoCompra.create({
       data,
       status,
       valor, 
