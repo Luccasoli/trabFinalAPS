@@ -13,4 +13,5 @@ Route.group(() => {
   Route.resource("funcionarios", "FuncionarioController").apiOnly();
   Route.resource("clientes", "ClienteController").apiOnly();
   Route.resource("usuarios", "UsuarioController").apiOnly();
+  Route.resource("compras", "CompraController").apiOnly();
 }).prefix("api");

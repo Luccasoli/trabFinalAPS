@@ -7,6 +7,7 @@ class ProdutosCompraSchema extends Schema {
   up() {
     this.create("produtos_compras", table => {
       table.increments();
+      table.integer("quantidade").notNullable();
       table
         .integer("cod_compra")
         .references("id")

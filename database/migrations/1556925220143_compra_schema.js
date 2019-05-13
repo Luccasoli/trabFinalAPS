@@ -24,6 +24,13 @@ class CompraSchema extends Schema {
         .onDelete("CASCADE")
         .onUpdate("CASCADE")
         .notNullable();
+      table
+        .integer("cartao")
+        .references("id")
+        .inTable("cartes")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE")
+        .notNullable();
       table.timestamps();
     });
   }
