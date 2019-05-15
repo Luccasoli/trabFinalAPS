@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const ProdutoAcompanhado = use("App/Models/ProdutosAcompanhado");
+
 /**
  * Resourceful controller for interacting with produtosacompanhados
  */
@@ -11,69 +13,48 @@ class ProdutosAcompanhadoController {
   /**
    * Show a list of all produtosacompanhados.
    * GET produtosacompanhados
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-  }
-
-  /**
-   * Render a form to be used for creating a new produtosacompanhado.
-   * GET produtosacompanhados/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
+    return await ProdutoAcompanhado.all();
   }
 
   /**
    * Create/save a new produtosacompanhado.
    * POST produtosacompanhados
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
   async store ({ request, response }) {
+    const{cliente, cod_produto} = request.body;
+
+    const produtoAcompanhado = await ProdutoAcompanhado.create({
+      cliente,
+      cod_produto
+    });
+
+    return produtoAcompanhado;
   }
 
   /**
-   * Display a single produtosacompanhado.
+   * Produtos Acompanhados de um cliente.
    * GET produtosacompanhados/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-  }
+    const produtoAcompanhado = await ProdutoAcompanhado.findOrFail(params.cliente);
+    const {id, cliente, cod_produto} = produtoAcompanhado;
+    let cliente = await produtoAcompanhado.cliente().fetch();
+    let produto = await produtoAcompanhado.produto().fetch();
 
-  /**
-   * Render a form to update an existing produtosacompanhado.
-   * GET produtosacompanhados/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
+    return{
+      id,
+      cliente,
+      cod_produto,
+      nome: cliente.nome,
+      produto: produto.descricao
+    };
   }
 
   /**
    * Update produtosacompanhado details.
-   * PUT or PATCH produtosacompanhados/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
+   * PUT or PATCH produtosacompanhados/:id não sei se att produtos acompanhados
    */
   async update ({ params, request, response }) {
   }
@@ -81,12 +62,11 @@ class ProdutosAcompanhadoController {
   /**
    * Delete a produtosacompanhado with id.
    * DELETE produtosacompanhados/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+    const produtoAcompanhado = await ProdutoAcompanhado.findOrFail(params.id);
+
+    produtoAcompanhado.delete();
   }
 }
 

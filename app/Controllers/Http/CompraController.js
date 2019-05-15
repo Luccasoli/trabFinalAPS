@@ -33,10 +33,23 @@ class CompraController {
   }
 
   /**
-   * Display a single compra.
+   * Mostra compras de um cliente.
    * GET compras/:id
    */
   async show ({ params, request, response, view }) {
+    const compra = await compras.findOrFail(params.id);
+    const {id, data, valor, funcionario, cartao};
+    let cliente = await compras.cliente().fetch();
+
+    return{
+      id,
+      data,
+      valor,
+      funcionario,
+      cartao,
+      nome: cliente.nome,
+      cpf: cliente.cpf
+    };
   }
 
   /**
