@@ -34,14 +34,13 @@ class BebidaController {
     Retorna uma única bebida
   */
   async show({ params, request, response, view }) {
-
     const bebida = await Bebida.findOrFail(params.id);
-    const {id, tipo} = bebida;
+    const { id, tipo } = bebida;
     let produto = await Bebida.produto().fetch();
 
-    return{
+    return {
       id,
-      valor, 
+      valor,
       disponibilidade,
       tipo,
       descricao
@@ -52,16 +51,15 @@ class BebidaController {
     Atualiza uma bebida
   */
   async update({ params, request, response }) {
-
     const bebida = await Bebida.findOrFail(params.id);
-    const {valor, descricao, disponibilidade, tipo} = request.body;
+    const { valor, descricao, disponibilidade, tipo } = request.body;
 
-    await bebida.produto().update({nome, valor, descricao});
-    bebida.merge({tipo});
+    await bebida.produto().update({ disponibilidade, valor, descricao });
+    bebida.merge({ tipo });
     await bebida.save();
     let produto = await bebida.produto().fetch();
 
-    return { 
+    return {
       id: bebida.id,
       tipo: bebida.tipo,
       valor: produto.valor,

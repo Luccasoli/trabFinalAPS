@@ -34,14 +34,13 @@ class TapiocaController {
     Retorna uma única tapioca
   */
   async show({ params, request, response, view }) {
-
     const tapioca = await Tapioca.findOrFail(params.id);
-    const {id, recheio} = tapioca;
+    const { id, recheio } = tapioca;
     let produto = await Tapioca.produto().fetch();
 
-    return{
+    return {
       id,
-      valor, 
+      valor,
       disponibilidade,
       recheio,
       descricao
@@ -52,16 +51,15 @@ class TapiocaController {
     Atualiza uma tapioca
   */
   async update({ params, request, response }) {
-
     const tapioca = await Tapioca.findOrFail(params.id);
-    const {valor, descricao, disponibilidade, recheio} = request.body;
+    const { valor, descricao, disponibilidade, recheio } = request.body;
 
-    await tapioca.produto().update({nome, valor, descricao});
-    tapioca.merge({recheio});
+    await tapioca.produto().update({ disponibilidade, valor, descricao });
+    tapioca.merge({ recheio });
     await tapioca.save();
     let produto = await tapioca.produto().fetch();
 
-    return { 
+    return {
       id: tapioca.id,
       recheio: tapioca.recheio,
       valor: produto.valor,
